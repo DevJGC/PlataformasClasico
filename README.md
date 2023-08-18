@@ -1,2 +1,2 @@
 # PlataformasClasico
- Proyecto Demo de la creación de un proyecto 2D para Unity
+ Proyecto Demo de un juego 2D creado con Unity
