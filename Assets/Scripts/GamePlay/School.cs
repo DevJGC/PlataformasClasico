@@ -4,45 +4,55 @@ using UnityEngine;
 
 public class School : MonoBehaviour
 {
-    [SerializeField] GameObject canvasSchool;
+    [SerializeField] private GameObject canvasSchool;
 
-    // title editor
+    // Título en el editor
     [Header("Numero Level Siguiente")]
-    [SerializeField] int i;// numero de nivel
+    [SerializeField] private int i;  // número de nivel
 
-    // referencia animator player
-    [SerializeField] Animator animatorPlayer;
+    // Referencia al animator del player
+    [SerializeField] private Animator animatorPlayer;
+
+    // Referencia al CoinManager
+    [SerializeField] private CoinManager coinManager;
 
     void Start()
     {
-
+        // Asumiendo que no necesitas nada aquí por ahora
     }
-
 
     void Update()
     {
-
+        // Asumiendo que no necesitas nada aquí por ahora
     }
 
-    // ontriggerenter2d tag player
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Player>().inSchool = true;
             Invoke("CompletedLevel", 1f);
-            // set level i to 1
-            PlayerPrefs.SetInt("Level"+i, 1);
+            // Set level i to 1
+            PlayerPrefs.SetInt("Level" + i, 1);
         }
     }
 
     void CompletedLevel()
     {
         // set animator player
-        // set trigger Final
         animatorPlayer.SetTrigger("Final");
         canvasSchool.SetActive(true);
-        
+
+        // Sumar las monedas del nivel actual a las monedas totales
+        int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
+        totalCoins += coinManager.GetCurrentCoinCount();
+        PlayerPrefs.SetInt("TotalCoins", totalCoins);
+
+        // Guardar el valor de las monedas mostradas antes de sumar las del nivel actual
+        PlayerPrefs.SetInt("DisplayedCoins", totalCoins - coinManager.GetCurrentCoinCount());
+
+        // Reiniciar el contador de monedas para el siguiente nivel
+        coinManager.ResetCoinCount();
     }
 
-}    
+}

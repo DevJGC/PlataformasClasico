@@ -20,4 +20,16 @@ public class CoinManager : MonoBehaviour
     {
         coinCounterText.text = coinCount.ToString(); // Solo muestra el número
     }
+
+    public int GetCurrentCoinCount()
+    {
+        return coinCount;
+    }
+
+    // Esta función reinicia el contador de monedas para el siguiente nivel
+    public void ResetCoinCount()
+    {
+        coinCount = 0;
+       // UpdateCoinCounterUI();
+    }
 }

@@ -120,9 +120,13 @@ public class MenuLevels : MonoBehaviour
             {
                 PlayerPrefs.SetInt("Level" + i, 0);
             }
+
+            // Resetea las monedas
+            PlayerPrefs.SetInt("DisplayedCoins", 0);
+            PlayerPrefs.SetInt("TotalCoins", 0);
+
             Debug.Log("Reset");
         }
-
     }
 
 }
