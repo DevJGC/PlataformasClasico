@@ -8,6 +8,8 @@ public class PanelTotalCoins : MonoBehaviour
     [SerializeField] private TextMeshProUGUI textTotalCoins;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
+    // byesound
+    [SerializeField] private AudioClip byeSound;
 
     private const string SUPER_JUMP_BOUGHT = "SuperJumpBought";
     private const string SUPER_SPEED_BOUGHT = "SuperSpeedBought";
@@ -17,6 +19,11 @@ public class PanelTotalCoins : MonoBehaviour
 
     [SerializeField] private Button buySuperJump; // boton compra SuperJump
     [SerializeField] private Button buySuperSpeed; // boton compra SuperSpeed
+
+    // animator buttonJump
+    [SerializeField] private Animator animatorButtonJump;
+    // animator buttonSpeed
+    [SerializeField] private Animator animatorButtonSpeed;
 
     void Start()
     {
@@ -53,10 +60,19 @@ public class PanelTotalCoins : MonoBehaviour
 
     private void UpdateButtonInteractivity(int totalCoins)
     {
-        bool isInteractable = totalCoins >= 100;
-        buySuperJump.interactable = isInteractable && PlayerPrefs.GetInt(SUPER_JUMP_BOUGHT, 0) == 0; // También comprueba si la mejora ya ha sido comprada
-        buySuperSpeed.interactable = isInteractable && PlayerPrefs.GetInt(SUPER_SPEED_BOUGHT, 0) == 0; // También comprueba si la mejora ya ha sido comprada
+        bool hasEnoughCoins = totalCoins >= 100;
+        bool superJumpBought = PlayerPrefs.GetInt(SUPER_JUMP_BOUGHT, 0) == 1;
+        bool superSpeedBought = PlayerPrefs.GetInt(SUPER_SPEED_BOUGHT, 0) == 1;
+
+        buySuperJump.interactable = hasEnoughCoins && !superJumpBought;
+        buySuperSpeed.interactable = hasEnoughCoins && !superSpeedBought;
+
+        // Habilitar o deshabilitar el componente Animator en función de si la mejora ha sido comprada y si tienes suficientes monedas
+        animatorButtonJump.enabled = hasEnoughCoins && !superJumpBought;
+        animatorButtonSpeed.enabled = hasEnoughCoins && !superSpeedBought;
     }
+
+
 
     private void UpdateButtonText()
     {
@@ -67,6 +83,7 @@ public class PanelTotalCoins : MonoBehaviour
         {
             buySuperJump.GetComponentInChildren<TextMeshProUGUI>().text = "Mejora de Salto Comprada";
             buySuperJump.interactable = false;
+                
         }
         else
         {
@@ -86,6 +103,9 @@ public class PanelTotalCoins : MonoBehaviour
 
     public void OnBuySuperJumpClicked()
     {
+        // playsound
+        audioSource.PlayOneShot(byeSound);
+        
         UpdateTotalCoins(-100);
         PlayerPrefs.SetInt(SUPER_JUMP_BOUGHT, 1);
         UpdateButtonText();
@@ -93,6 +113,9 @@ public class PanelTotalCoins : MonoBehaviour
 
     public void OnBuySuperSpeedClicked()
     {
+        // playsound
+        audioSource.PlayOneShot(byeSound);
+        
         UpdateTotalCoins(-100);
         PlayerPrefs.SetInt(SUPER_SPEED_BOUGHT, 1);
         UpdateButtonText();

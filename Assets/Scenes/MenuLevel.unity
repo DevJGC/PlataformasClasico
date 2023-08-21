@@ -903,6 +903,7 @@ GameObject:
   - component: {fileID: 526278045}
   - component: {fileID: 526278044}
   - component: {fileID: 526278043}
+  - component: {fileID: 526278046}
   m_Layer: 5
   m_Name: ButtonMejoraSuperVelocidad
   m_TagString: Untagged
@@ -1025,6 +1026,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526278041}
   m_CullTransparentMesh: 1
+--- !u!95 &526278046
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526278041}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 820831531b400ac4eb4dd93d22b6ad47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &541076355
 GameObject:
   m_ObjectHideFlags: 0
@@ -2995,6 +3017,7 @@ GameObject:
   - component: {fileID: 1655931865}
   - component: {fileID: 1655931864}
   - component: {fileID: 1655931863}
+  - component: {fileID: 1655931866}
   m_Layer: 5
   m_Name: ButtonMejoraSuperSalto
   m_TagString: Untagged
@@ -3117,6 +3140,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655931861}
   m_CullTransparentMesh: 1
+--- !u!95 &1655931866
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1655931861}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 820831531b400ac4eb4dd93d22b6ad47, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1740215722
 GameObject:
   m_ObjectHideFlags: 0
@@ -3638,9 +3682,12 @@ MonoBehaviour:
   textTotalCoins: {fileID: 541076357}
   audioSource: {fileID: 1345502079}
   audioClip: {fileID: 8300000, guid: 474104502a34c534bbd191184cd0b8eb, type: 3}
+  byeSound: {fileID: 8300000, guid: 373890507360aa249b2b8d0b66cfccda, type: 3}
   timeToWait: 0.1
   buySuperJump: {fileID: 1655931863}
   buySuperSpeed: {fileID: 526278043}
+  animatorButtonJump: {fileID: 1655931866}
+  animatorButtonSpeed: {fileID: 526278046}
 --- !u!1 &1969721778
 GameObject:
   m_ObjectHideFlags: 0
