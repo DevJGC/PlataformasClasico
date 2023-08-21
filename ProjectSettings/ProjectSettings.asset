@@ -14,7 +14,7 @@ PlayerSettings:
   accelerometerFrequency: 60
   companyName: TuneaJuegos
   productName: PlataformasClasico
-  defaultCursor: {fileID: 0}
+  defaultCursor: {fileID: 2800000, guid: 2a1760994ca46ba428940a74dc08f124, type: 3}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_ShowUnitySplashScreen: 0

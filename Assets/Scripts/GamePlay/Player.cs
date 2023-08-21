@@ -7,8 +7,10 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float runSpeed = 7.5f;
-    [SerializeField] private float timeToStartRunning = 2.0f;
+    [SerializeField] private float superRunSpeed = 10.0f;
     [SerializeField] private float jumpForce = 5.0f;
+    [SerializeField] private float superJumpForce = 8.0f;
+    [SerializeField] private float timeToStartRunning = 2.0f;
     [SerializeField] private bool isGrounded;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private float checkRadius;
@@ -33,20 +35,33 @@ public class Player : MonoBehaviour
     {
         wasGrounded = true;
         Respawn();
+        ConfigureUpgrades();
     }
 
     void Update()
     {
-        // if inSchool,sale
         if (inSchool)
         {
             return;
         }
-        
+
         Move();
         Jump();
         UpdateJumpAnimation();
         RecoverEnergy();
+    }
+
+    void ConfigureUpgrades()
+    {
+        if (PlayerPrefs.GetInt("SuperJumpBought", 0) == 1)
+        {
+            jumpForce = superJumpForce;
+        }
+
+        if (PlayerPrefs.GetInt("SuperSpeedBought", 0) == 1)
+        {
+            runSpeed = superRunSpeed;
+        }
     }
 
     void Move()
@@ -56,7 +71,6 @@ public class Player : MonoBehaviour
 
         GetComponent<Rigidbody2D>().velocity = new Vector2(moveInput * speed, GetComponent<Rigidbody2D>().velocity.y);
 
-        // Flip sprite
         if (moveInput > 0)
         {
             spriteRenderer.flipX = false;
@@ -140,7 +154,6 @@ public class Player : MonoBehaviour
         audioSource.PlayOneShot(audioPasos[Random.Range(0, audioPasos.Length)]);
     }
 
-
     public void AddEnergy(float amount)
     {
         energyImage.fillAmount = Mathf.Min(energyImage.fillAmount + amount, 1);
@@ -150,8 +163,6 @@ public class Player : MonoBehaviour
     {
         Vector3 respawnPosition = GameManager.Instance.GetLastCheckPointPosition();
 
-        // Si respawnPosition es Vector3.zero, significa que no se ha activado ningún checkpoint en el nivel actual.
-        // En ese caso, usaremos la posición inicial del jugador como posición de reaparición.
         if (respawnPosition == Vector3.zero)
         {
             respawnPosition = startPosition;
@@ -159,7 +170,4 @@ public class Player : MonoBehaviour
 
         transform.position = respawnPosition;
     }
-
-
-
 }

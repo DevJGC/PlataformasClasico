@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -7,17 +6,17 @@ using UnityEngine.UI;
 public class PanelTotalCoins : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI textTotalCoins;
-
-    // sounds
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
-    private int displayedCoins; // Las monedas que se están mostrando actualmente
+    private const string SUPER_JUMP_BOUGHT = "SuperJumpBought";
+    private const string SUPER_SPEED_BOUGHT = "SuperSpeedBought";
 
+    private int displayedCoins; // Las monedas que se están mostrando actualmente
     [SerializeField] private float timeToWait = 0.1f; // Tiempo que se espera entre incrementos de monedas
 
-    [SerializeField] private Button buySuperJump;
-    [SerializeField] private Button buySuperSpeed;
+    [SerializeField] private Button buySuperJump; // boton compra SuperJump
+    [SerializeField] private Button buySuperSpeed; // boton compra SuperSpeed
 
     void Start()
     {
@@ -25,6 +24,7 @@ public class PanelTotalCoins : MonoBehaviour
         int totalCoins = PlayerPrefs.GetInt("TotalCoins", 0);
 
         UpdateButtonInteractivity(totalCoins); // Actualizar la interactividad de los botones basándose en totalCoins
+        UpdateButtonText(); // Actualizar el texto de los botones en el inicio
 
         if (displayedCoins < totalCoins)
         {
@@ -32,21 +32,70 @@ public class PanelTotalCoins : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetPurchaseValues();
+        }
+    }
+
+    private void ResetPurchaseValues()
+    {
+        PlayerPrefs.DeleteKey(SUPER_JUMP_BOUGHT);
+        PlayerPrefs.DeleteKey(SUPER_SPEED_BOUGHT);
+
+        // Luego de borrar los valores, actualiza el texto de los botones y su interactividad
+        UpdateButtonText();
+        UpdateButtonInteractivity(PlayerPrefs.GetInt("TotalCoins", 0));
+    }
+
+
     private void UpdateButtonInteractivity(int totalCoins)
     {
         bool isInteractable = totalCoins >= 100;
-        buySuperJump.interactable = isInteractable;
-        buySuperSpeed.interactable = isInteractable;
+        buySuperJump.interactable = isInteractable && PlayerPrefs.GetInt(SUPER_JUMP_BOUGHT, 0) == 0; // También comprueba si la mejora ya ha sido comprada
+        buySuperSpeed.interactable = isInteractable && PlayerPrefs.GetInt(SUPER_SPEED_BOUGHT, 0) == 0; // También comprueba si la mejora ya ha sido comprada
+    }
+
+    private void UpdateButtonText()
+    {
+        bool superJumpBought = PlayerPrefs.GetInt(SUPER_JUMP_BOUGHT, 0) == 1;
+        bool superSpeedBought = PlayerPrefs.GetInt(SUPER_SPEED_BOUGHT, 0) == 1;
+
+        if (superJumpBought)
+        {
+            buySuperJump.GetComponentInChildren<TextMeshProUGUI>().text = "Mejora de Salto Comprada";
+            buySuperJump.interactable = false;
+        }
+        else
+        {
+            buySuperJump.GetComponentInChildren<TextMeshProUGUI>().text = "Super Salto Precio: $100";
+        }
+
+        if (superSpeedBought)
+        {
+            buySuperSpeed.GetComponentInChildren<TextMeshProUGUI>().text = "Mejora de Velocidad Comprada";
+            buySuperSpeed.interactable = false;
+        }
+        else
+        {
+            buySuperSpeed.GetComponentInChildren<TextMeshProUGUI>().text = "Super Velocidad Precio: $100";
+        }
     }
 
     public void OnBuySuperJumpClicked()
     {
-        UpdateTotalCoins(-100); // Restar 100 monedas
+        UpdateTotalCoins(-100);
+        PlayerPrefs.SetInt(SUPER_JUMP_BOUGHT, 1);
+        UpdateButtonText();
     }
 
     public void OnBuySuperSpeedClicked()
     {
-        UpdateTotalCoins(-100); // Restar 100 monedas
+        UpdateTotalCoins(-100);
+        PlayerPrefs.SetInt(SUPER_SPEED_BOUGHT, 1);
+        UpdateButtonText();
     }
 
     private void UpdateTotalCoins(int amount)
@@ -55,10 +104,9 @@ public class PanelTotalCoins : MonoBehaviour
         totalCoins += amount;
         PlayerPrefs.SetInt("TotalCoins", totalCoins);
 
-       // textTotalCoins.text = totalCoins.ToString(); // Actualizar el texto de monedas en UI
         textTotalCoins.text = "$" + totalCoins.ToString();
 
-        UpdateButtonInteractivity(totalCoins); // Actualizar la interactividad de los botones basándose en el nuevo totalCoins
+        UpdateButtonInteractivity(totalCoins);
     }
 
     private IEnumerator IncrementCoins()
@@ -68,10 +116,8 @@ public class PanelTotalCoins : MonoBehaviour
         while (displayedCoins < totalCoins)
         {
             displayedCoins++;
-            //textTotalCoins.text = displayedCoins.ToString();
             textTotalCoins.text = "$" + displayedCoins.ToString();
 
-            // Si tienes un sonido para cuando se incrementa el coin, puedes reproducirlo aquí
             if (audioClip != null && audioSource != null)
             {
                 audioSource.PlayOneShot(audioClip);
