@@ -1266,7 +1266,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 770275231}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1969721783}
+        m_TargetAssemblyTypeName: MenuLevels, Assembly-CSharp
+        m_MethodName: GotoLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GamePlayLevel5
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &770275231
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1763,7 +1775,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1138679204}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1969721783}
+        m_TargetAssemblyTypeName: MenuLevels, Assembly-CSharp
+        m_MethodName: GotoLevel
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: GamePlayLevel6
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1138679204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3221,7 +3245,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Super Salto
 
-    Precio: $100'
+    Precio: $150'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 563273c157110e04ebe7a4b22b3e5447, type: 2}
   m_sharedMaterial: {fileID: 3966352675363757881, guid: 563273c157110e04ebe7a4b22b3e5447, type: 2}
@@ -4012,7 +4036,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Super Velocidad
 
-    Precio: $100'
+    Precio: $150'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 563273c157110e04ebe7a4b22b3e5447, type: 2}
   m_sharedMaterial: {fileID: 3966352675363757881, guid: 563273c157110e04ebe7a4b22b3e5447, type: 2}

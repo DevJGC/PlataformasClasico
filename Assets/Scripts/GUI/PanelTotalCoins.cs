@@ -60,7 +60,7 @@ public class PanelTotalCoins : MonoBehaviour
 
     private void UpdateButtonInteractivity(int totalCoins)
     {
-        bool hasEnoughCoins = totalCoins >= 200;
+        bool hasEnoughCoins = totalCoins >= 150;
         bool superJumpBought = PlayerPrefs.GetInt(SUPER_JUMP_BOUGHT, 0) == 1;
         bool superSpeedBought = PlayerPrefs.GetInt(SUPER_SPEED_BOUGHT, 0) == 1;
 
@@ -87,7 +87,7 @@ public class PanelTotalCoins : MonoBehaviour
         }
         else
         {
-            buySuperJump.GetComponentInChildren<TextMeshProUGUI>().text = "Super Salto Precio: $200";
+            buySuperJump.GetComponentInChildren<TextMeshProUGUI>().text = "Super Salto Precio: $150";
         }
 
         if (superSpeedBought)
@@ -97,7 +97,7 @@ public class PanelTotalCoins : MonoBehaviour
         }
         else
         {
-            buySuperSpeed.GetComponentInChildren<TextMeshProUGUI>().text = "Super Velocidad Precio: $200";
+            buySuperSpeed.GetComponentInChildren<TextMeshProUGUI>().text = "Super Velocidad Precio: $150";
         }
     }
 
@@ -106,7 +106,7 @@ public class PanelTotalCoins : MonoBehaviour
         // playsound
         audioSource.PlayOneShot(byeSound);
         
-        UpdateTotalCoins(-200);
+        UpdateTotalCoins(-150);
         PlayerPrefs.SetInt(SUPER_JUMP_BOUGHT, 1);
         UpdateButtonText();
     }
@@ -116,7 +116,7 @@ public class PanelTotalCoins : MonoBehaviour
         // playsound
         audioSource.PlayOneShot(byeSound);
         
-        UpdateTotalCoins(-200);
+        UpdateTotalCoins(-150);
         PlayerPrefs.SetInt(SUPER_SPEED_BOUGHT, 1);
         UpdateButtonText();
     }
