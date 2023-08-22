@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // referencia prefab coin
+    [SerializeField] private GameObject coinPrefab;
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
@@ -22,8 +24,17 @@ public class Box : MonoBehaviour
         // if tag DieZone
         if (other.CompareTag("DieZone"))
         {
+            // launch coin
+            LaunchCoin();
             // destroy gameobject
             Destroy(gameObject);
         }
+    }
+
+    // instantiate coin
+    private void LaunchCoin()
+    {
+        // instantiate coin
+        Instantiate(coinPrefab, transform.position, Quaternion.identity);
     }
 }
