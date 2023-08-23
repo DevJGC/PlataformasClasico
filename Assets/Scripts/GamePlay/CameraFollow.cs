@@ -12,6 +12,7 @@ public class CameraFollow : MonoBehaviour
 
     private Player playerScript; // Suponiendo que tu script del jugador se llama "Player"
 
+
     void Start()
     {
         if (!mainCamera)
