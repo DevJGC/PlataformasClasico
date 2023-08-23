@@ -13446,7 +13446,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -16061,7 +16061,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 773641433}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 24.3, y: 0, z: -10}
+  m_LocalPosition: {x: -21.1, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -17335,8 +17335,8 @@ WheelJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: 1.242, y: -1.1229998}
   m_Suspension:
-    m_DampingRatio: 0.9
-    m_Frequency: 10
+    m_DampingRatio: 0.7
+    m_Frequency: 15
     m_Angle: 90
   m_UseMotor: 1
   m_Motor:
@@ -17354,11 +17354,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.25
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 92d5c4474b898dd4b92323c7138452f1, type: 2}
+  m_Material: {fileID: 6200000, guid: 5901c9543b537e84ca8d844bf5c09029, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -17366,7 +17366,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &960698158
@@ -19821,7 +19821,7 @@ GameObject:
   - component: {fileID: 1168374307}
   m_Layer: 0
   m_Name: moto
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -19905,8 +19905,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 5.526529
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -20040,9 +20040,10 @@ PolygonCollider2D:
       - {x: -1.65, y: -0.36499998}
       - {x: -1.7099999, y: -0.505}
       - {x: -1.8, y: -0.615}
-      - {x: -1.8, y: -0.865}
-      - {x: -1.79, y: -0.885}
-      - {x: -1.5999999, y: -0.98499995}
+      - {x: -1.9083831, y: -0.6642227}
+      - {x: -1.8546438, y: -0.7631232}
+      - {x: -1.7729092, y: -0.8822114}
+      - {x: -1.6088805, y: -0.9885534}
       - {x: -1.36, y: -1.025}
       - {x: -1.31, y: -1.1949999}
       - {x: -1.22, y: -1.355}
@@ -20136,7 +20137,7 @@ PolygonCollider2D:
       - {x: 0.58, y: -0.79499996}
       - {x: 0.59, y: -0.79499996}
       - {x: 0.59, y: -0.78499997}
-  m_UseDelaunayMesh: 0
+  m_UseDelaunayMesh: 1
 --- !u!114 &1168374307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20149,9 +20150,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a86ffc9c9165e4e4293d17a75936ee07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 1800
+  forceAmount: 15
   ruedaTraseraJoint: {fileID: 1228511438}
   ruedaDelanteraJoint: {fileID: 960698156}
+  ruedaTraseraRb: {fileID: 1228511439}
+  ruedaDelanteraRb: {fileID: 960698157}
+  ruedaTraseraMaterial: {fileID: 6200000, guid: ea4a6e6e837163e4989862dcea3d230b, type: 2}
+  ruedaDelanteraMaterial: {fileID: 6200000, guid: 5901c9543b537e84ca8d844bf5c09029, type: 2}
+  pressedFrictionValue: 1.5
 --- !u!1001 &1174161750
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20812,8 +20819,8 @@ WheelJoint2D:
   m_Anchor: {x: 0, y: 0}
   m_ConnectedAnchor: {x: -1.037, y: -1.168}
   m_Suspension:
-    m_DampingRatio: 0.9
-    m_Frequency: 10
+    m_DampingRatio: 0.7
+    m_Frequency: 15
     m_Angle: 90
   m_UseMotor: 1
   m_Motor:
@@ -20831,11 +20838,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.25
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 6200000, guid: 92d5c4474b898dd4b92323c7138452f1, type: 2}
+  m_Material: {fileID: 6200000, guid: ea4a6e6e837163e4989862dcea3d230b, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -20843,7 +20850,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &1228511440
@@ -24496,7 +24503,7 @@ GameObject:
   - component: {fileID: 1547306384}
   m_Layer: 0
   m_Name: Moto
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24509,7 +24516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1547306383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.8, y: 0, z: 0}
+  m_LocalPosition: {x: -18.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
