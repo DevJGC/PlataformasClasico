@@ -10,6 +10,8 @@ public class Counter : MonoBehaviour
     private bool isCountingDown = false;
     private float currentTime;
 
+    [SerializeField] private Moto moto;
+
     void Start()
     {
         StartCountdown(); // Inicia el contador regresivo al comenzar el juego.
@@ -26,6 +28,12 @@ public class Counter : MonoBehaviour
 
     public void StartCountdown()
     {
+        // if moto.meta == true return
+        if (moto.GetMeta() || moto.GetDead())
+        {
+            return;
+        }
+
         if (!isCountingDown)
         {
             currentTime = countdownDuration;

@@ -17,6 +17,8 @@ public class DetectorRueda : MonoBehaviour
     // prefab mas1
     [SerializeField] private GameObject mas1Prefab;
 
+    [SerializeField] private Moto moto;
+
     void Start()
     {
         // Comenzamos la cuenta desde el inicio
@@ -50,6 +52,11 @@ public class DetectorRueda : MonoBehaviour
     {
         while (true)
         {
+            if (moto.GetMeta() || moto.GetDead())
+            {
+                break;
+            }
+
             yield return new WaitForSeconds(1);  // Primero esperamos 1 segundo
 
             if (!estaTocando)

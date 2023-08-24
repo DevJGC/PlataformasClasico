@@ -11,7 +11,7 @@ public class HeadMoto : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
-
+    [SerializeField] private Moto moto;
 
     void Start()
     {
@@ -36,6 +36,9 @@ public class HeadMoto : MonoBehaviour
             //Destroy(gameObject);
             // restart level
             Invoke("RestartLevel", 1f);
+
+            // set dead true
+            moto.dead = true;
 
         }
     }

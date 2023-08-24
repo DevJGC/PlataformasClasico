@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Moto : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float forceAmount = 50f;
+    [SerializeField] public float speed = 10f;
+    [SerializeField] public float forceAmount = 50f;
     [SerializeField] private WheelJoint2D ruedaTraseraJoint;
     [SerializeField] private WheelJoint2D ruedaDelanteraJoint;
 
@@ -24,6 +24,11 @@ public class Moto : MonoBehaviour
     private JointMotor2D motorDelantero;
     private float horizontal;
 
+    // bool meta
+    [SerializeField] public bool meta = false;
+
+    [SerializeField] public bool dead = false;
+
     void Start()
     {
         motorTrasero = ruedaTraseraJoint.motor;
@@ -36,6 +41,12 @@ public class Moto : MonoBehaviour
 
     void Update()
     {
+        // if meta == true return
+        if (meta || dead)
+        {
+            return;
+        }
+
         horizontal = Input.GetAxis("Horizontal");
 
         if (Input.GetKey(KeyCode.Space))
@@ -52,6 +63,12 @@ public class Moto : MonoBehaviour
 
     void FixedUpdate()
     {
+        // if meta == true return
+        if (meta || dead)
+        {
+            return;
+        }
+
         if (horizontal != 0)
         {
             // Ajustar velocidad del motor
@@ -77,9 +94,6 @@ public class Moto : MonoBehaviour
     {
         ruedaTraseraMaterial.friction = friction;
         ruedaDelanteraMaterial.friction = friction;
-
-
-
     }
 
     void RestoreOriginalFriction()
@@ -87,5 +101,36 @@ public class Moto : MonoBehaviour
         ruedaTraseraMaterial.friction = originalFrictionTrasera;
         ruedaDelanteraMaterial.friction = originalFrictionDelantera;
     }
+
+    // meta
+    public void LlegadaMeta()
+    {
+        meta = true;
+
+        // Desactivar los motores
+        motorTrasero.motorSpeed = 0;
+        motorDelantero.motorSpeed = 0;
+        ruedaTraseraJoint.motor = motorTrasero;
+        ruedaDelanteraJoint.motor = motorDelantero;
+
+        // Aumentar la fricción para detener la moto
+        //ChangeWheelFriction(1.0f); // puedes ajustar este valor según lo rápido que quieras que se detenga
+
+        // Opcionalmente, puedes también ajustar la velocidad lineal de las ruedas a 0 para detenerlas inmediatamente:
+        ruedaTraseraRb.velocity = Vector2.zero;
+        ruedaDelanteraRb.velocity = Vector2.zero;
+    }
+
+    // public function to return bool meta
+    public bool GetMeta()
+    {
+        return meta;
+    }
+
+    public bool GetDead()
+    {
+        return dead;
+    }
+
 }
 
