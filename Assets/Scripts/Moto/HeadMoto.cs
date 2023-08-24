@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class HeadMoto : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class HeadMoto : MonoBehaviour
     // audio source
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
+
 
 
     void Start()
@@ -32,7 +34,17 @@ public class HeadMoto : MonoBehaviour
             // play sound
             audioSource.PlayOneShot(audioClip);
             //Destroy(gameObject);
+            // restart level
+            Invoke("RestartLevel", 1f);
+
         }
+    }
+
+    // restart level
+    private void RestartLevel()
+    {
+        // reload level
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
 }
