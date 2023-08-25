@@ -5,7 +5,7 @@ using TMPro;
 
 public class DetectorRueda : MonoBehaviour
 {
-    [SerializeField] private int segundosSinTocar = 0;
+    [SerializeField] public int segundosSinTocar = 0;
     [SerializeField] private bool estaTocando = false;
 
     [SerializeField] private TextMeshProUGUI textMeshProUGUI;

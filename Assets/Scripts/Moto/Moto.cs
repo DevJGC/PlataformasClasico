@@ -132,5 +132,11 @@ public class Moto : MonoBehaviour
         return dead;
     }
 
+    void OnDestroy()
+    {
+        // Restaurar la fricción original
+        RestoreOriginalFriction();
+    }
+
 }
 
