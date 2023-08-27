@@ -18,10 +18,10 @@ public class Box : MonoBehaviour
         
     }
 
-    // ontriggerenter2d tag DieZone
+    // comprueba si entra en el trigger2d
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // if tag DieZone
+        //  si entra en el trigger2d
         if (other.CompareTag("DieZone"))
         {
             // launch coin

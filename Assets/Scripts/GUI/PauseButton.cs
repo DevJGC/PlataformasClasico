@@ -18,7 +18,7 @@ public class PauseButton : MonoBehaviour
     
     void Update()
     {
-        // press p
+        // press p para activar Pause
         if (Input.GetKeyDown(KeyCode.P))
         {
             ActivePause();
@@ -26,19 +26,20 @@ public class PauseButton : MonoBehaviour
 
     }
 
+    //  active pause
     public void ActivePause()
     {
         if (Time.timeScale == 1)
         {
-            Time.timeScale = 0;
-            textPause.SetActive(true);
-            buttonPause.SetActive(true);
+            Time.timeScale = 0; //  pausa el tiempo
+            textPause.SetActive(true); //   activa el texto
+            buttonPause.SetActive(true); // activa el boton
         }
         else
         {
-            Time.timeScale = 1;
-            textPause.SetActive(false);
-            buttonPause.SetActive(false);
+            Time.timeScale = 1; //  activa el tiempo
+            textPause.SetActive(false); //  desactiva el texto
+            buttonPause.SetActive(false); //    desactiva el boton
         }
     }
 }

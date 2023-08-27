@@ -5,23 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class CanvasGameOver : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip audioPlay;
+    [SerializeField] private AudioSource audioSource; //    Referencia al componente AudioSource
+    [SerializeField] private AudioClip audioPlay; //    Referencia al audio clip
     [SerializeField] private PlayerDie playerDie; // Referencia al script PlayerDie del jugador
 
     void Start()
     {
-        audioSource.PlayOneShot(audioPlay);
+        audioSource.PlayOneShot(audioPlay); //  Reproduce el audio clip
     }
 
     void Update()
     {
+        // Si se pulsa Enter, reinicia el juego
         if (Input.GetKeyDown(KeyCode.Return))
         {
             RestartGame();
         }
     }
 
+    //  Reinicia el juego
     public void RestartGame()
     {
         playerDie.RespawnAtCheckpoint(); // Reinicia al jugador en el último checkpoint
@@ -30,6 +32,7 @@ public class CanvasGameOver : MonoBehaviour
         gameObject.SetActive(false);
     }
 
+    //  Sale de la partida
     public void ExitGame()
     {
         SceneManager.LoadScene("Menu");

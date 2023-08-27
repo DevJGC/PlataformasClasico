@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class CanvasSchool : MonoBehaviour
 {
-    [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip audioPlay;
+    [SerializeField] private AudioSource audioSource; //    referencia audio source
+    [SerializeField] private AudioClip audioPlay; //    referencia audio clip
 
-    [SerializeField] private AudioSource audioMusic;
+    [SerializeField] private AudioSource audioMusic; //   referencia audio source
 
     void Start()
     {
@@ -17,6 +17,7 @@ public class CanvasSchool : MonoBehaviour
         audioSource.PlayOneShot(audioPlay);
     }
 
+    //  Si se pulsa Enter, sale al menú de niveles
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
@@ -25,6 +26,7 @@ public class CanvasSchool : MonoBehaviour
         }
     }
 
+    //  va al menu de niveles
     public void ContinueGame()
     {
 
@@ -32,6 +34,7 @@ public class CanvasSchool : MonoBehaviour
 
     }
 
+    //  sale al menu principal
     public void ExitGame()
     {
         SceneManager.LoadScene("Menu");

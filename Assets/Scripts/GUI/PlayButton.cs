@@ -22,7 +22,7 @@ public class PlayButton : MonoBehaviour
     
     void Update()
     {
-        // key enter play
+        // key enter para jugar
         if (Input.GetKeyDown(KeyCode.Return))
         {
             Play();

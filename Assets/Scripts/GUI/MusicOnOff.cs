@@ -15,7 +15,7 @@ public class MusicOnOff : MonoBehaviour
     // audio clip tap
     [SerializeField] AudioClip audioClipTap;
 
-    private const string MUSIC_STATE_PREF = "MusicState";
+    private const string MUSIC_STATE_PREF = "MusicState"; //    Añade una constante para el nombre de la preferencia
 
     void Start()
     {
@@ -28,13 +28,13 @@ public class MusicOnOff : MonoBehaviour
         int musicState = PlayerPrefs.GetInt(MUSIC_STATE_PREF, 1); // Por defecto, la música está activa
         if (musicState == 0)
         {
-            audioSource.volume = 0;
-            musicOnOffImage.SetActive(true);
+            audioSource.volume = 0; //  Desactiva el volumen
+            musicOnOffImage.SetActive(true); // Activa la imagen de música desactivada
         }
         else
         {
-            audioSource.volume = 1;
-            musicOnOffImage.SetActive(false);
+            audioSource.volume = 1; //  Activa el volumen
+            musicOnOffImage.SetActive(false); //    Desactiva la imagen de música desactivada
         }
     }
 
@@ -46,15 +46,15 @@ public class MusicOnOff : MonoBehaviour
         
         if (audioSource.volume == 0)
         {
-            audioSource.volume = 1;
-            musicOnOffImage.SetActive(false);
-            PlayerPrefs.SetInt(MUSIC_STATE_PREF, 1);
+            audioSource.volume = 1; //  Activa el volumen
+            musicOnOffImage.SetActive(false); //    Desactiva la imagen de música desactivada
+            PlayerPrefs.SetInt(MUSIC_STATE_PREF, 1); // Guarda el estado de la música en 1
         }
         else
         {
-            audioSource.volume = 0;
-            musicOnOffImage.SetActive(true);
-            PlayerPrefs.SetInt(MUSIC_STATE_PREF, 0);
+            audioSource.volume = 0; //  Desactiva el volumen
+            musicOnOffImage.SetActive(true); // Activa la imagen de música desactivada
+            PlayerPrefs.SetInt(MUSIC_STATE_PREF, 0); // Guarda el estado de la música en 0
         }
         PlayerPrefs.Save();  // Guarda los cambios en PlayerPrefs
     }

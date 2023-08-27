@@ -7,10 +7,13 @@ public class Barrel : MonoBehaviour
     // referencia al rigidbody
     [SerializeField] Rigidbody2D rb;
 
+    // referencia al prefab de la moneda prefab
     [SerializeField] GameObject prefabCoin;
 
+    // referencia al prefab de la explosión
     [SerializeField] GameObject prefabExplosion;
 
+    // Variable para asegurarnos de que la explosión solo se ejecute una vez.
     bool onlyOne;
 
     // Variable para almacenar el número del layer que deseas chequear.
@@ -31,6 +34,7 @@ public class Barrel : MonoBehaviour
 
     }
 
+    // Si el barril colisiona con el jugador, la moneda se gana y el barril explota
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player" && !onlyOne || collision.gameObject.tag == "Barrel" && !onlyOne)
@@ -49,12 +53,14 @@ public class Barrel : MonoBehaviour
         }
     }
 
+    // Instancia la moneda
     private void CoinWin()
     {
         Instantiate(prefabCoin, transform.position, Quaternion.identity);
 
     }
 
+    // Instancia la explosión y los trozos
     private void Explosion()
     {
         // Instanciar el prefab de la explosión
@@ -71,9 +77,11 @@ public class Barrel : MonoBehaviour
                 // Dar un empuje al trozo. Puedes ajustar la fuerza y dirección según necesites.
                 float randomX = Random.Range(-1f, 1f);
                 float randomY = Random.Range(-1f, 1f);
+                // Normalizar el vector para que la fuerza sea la misma en todas las direcciones
                 Vector2 randomDirection = new Vector2(randomX, randomY).normalized;
                 float forceMagnitude = 1.5f; // Ajusta este valor según la fuerza que quieras
 
+                // Aplicar el empuje
                 chunkRb.AddForce(randomDirection * forceMagnitude, ForceMode2D.Impulse);
             }
         }

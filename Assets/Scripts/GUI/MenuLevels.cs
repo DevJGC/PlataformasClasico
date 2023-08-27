@@ -19,7 +19,7 @@ public class MenuLevels : MonoBehaviour
     // reference animator
     [SerializeField] private Animator animator;
 
-    private const string MUSIC_STATE_PREF = "MusicState";
+    private const string MUSIC_STATE_PREF = "MusicState"; //    key para guardar el estado de la música.
 
     void Start()
     {
@@ -32,6 +32,7 @@ public class MenuLevels : MonoBehaviour
         CheckLevel();
     }
 
+    //  Gestionar las variables PlayerPrefs de niveles desbloqueados.
     public void CheckFirstRun()
     {
         // Si no existe la key "FirstRun", entonces es la primera vez que se ejecuta el juego.
@@ -51,6 +52,7 @@ public class MenuLevels : MonoBehaviour
         }
     }
 
+    //  chequea los niveles desbloqueados.
     public void CheckLevel()
     {
         for (int i = 0; i < levelsLockImages.Length; i++)
@@ -71,6 +73,7 @@ public class MenuLevels : MonoBehaviour
         }
     }
 
+    //  carga el nivel seleccionado.
     public void GotoLevel(string levelName)
     {
         // Reproduce el audio
@@ -82,6 +85,7 @@ public class MenuLevels : MonoBehaviour
         StartCoroutine(LoadLevelAfterDelay(levelName, 1f));
     }
 
+    //  carga el nivel seleccionado con retardo
     IEnumerator LoadLevelAfterDelay(string levelName, float delay)
     {
        
@@ -90,9 +94,10 @@ public class MenuLevels : MonoBehaviour
 
         // Carga la escena
         SceneManager.LoadScene(levelName);
-        if (GameManager.Instance != null)
+
+        if (GameManager.Instance != null) // Si el GameManager existe, entonces estamos en un nivel
         {
-            GameManager.Instance.ResetLastCheckPointPosition();
+            GameManager.Instance.ResetLastCheckPointPosition(); //  Resetea la posición del último checkpoint
         }
     }
 
@@ -110,6 +115,7 @@ public class MenuLevels : MonoBehaviour
         }
     }
 
+    // Si se pulsa R se borran los valores PlayerPrefs para Testear
     private void Update()
     {
         // key Reset

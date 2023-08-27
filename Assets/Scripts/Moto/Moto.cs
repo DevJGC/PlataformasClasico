@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class Moto : MonoBehaviour
 {
-    [SerializeField] public float speed = 10f;
-    [SerializeField] public float forceAmount = 50f;
-    [SerializeField] private WheelJoint2D ruedaTraseraJoint;
-    [SerializeField] private WheelJoint2D ruedaDelanteraJoint;
+    [SerializeField] public float speed = 10f; // velocidad
+    [SerializeField] public float forceAmount = 50f; // fuerza
+    [SerializeField] private WheelJoint2D ruedaTraseraJoint; // referencia rueda trasera
+    [SerializeField] private WheelJoint2D ruedaDelanteraJoint; // referencia rueda delantera
 
-    [SerializeField] private Rigidbody2D ruedaTraseraRb;
-    [SerializeField] private Rigidbody2D ruedaDelanteraRb;
+    [SerializeField] private Rigidbody2D ruedaTraseraRb; // referencia rigidbody rueda trasera
+    [SerializeField] private Rigidbody2D ruedaDelanteraRb; // referencia rigidbody rueda delantera
 
-    [SerializeField] private PhysicsMaterial2D ruedaTraseraMaterial;
-    [SerializeField] private PhysicsMaterial2D ruedaDelanteraMaterial;
+    [SerializeField] private PhysicsMaterial2D ruedaTraseraMaterial; // referencia material rueda trasera
+    [SerializeField] private PhysicsMaterial2D ruedaDelanteraMaterial; // referencia material rueda delantera
 
     [SerializeField] private float pressedFrictionValue = 0.5f;  // Valor de fricción cuando se presiona Space
 
-    private float originalFrictionTrasera;
-    private float originalFrictionDelantera;
+    private float originalFrictionTrasera; // Valor de fricción original de la rueda trasera
+    private float originalFrictionDelantera; // Valor de fricción original de la rueda delantera
 
-    private JointMotor2D motorTrasero;
-    private JointMotor2D motorDelantero;
-    private float horizontal;
+    private JointMotor2D motorTrasero; // motor rueda trasera
+    private JointMotor2D motorDelantero; // motor rueda delantera 
+    private float horizontal; // horizontal
 
     // bool meta
     [SerializeField] public bool meta = false;
@@ -31,12 +31,12 @@ public class Moto : MonoBehaviour
 
     void Start()
     {
-        motorTrasero = ruedaTraseraJoint.motor;
-        motorDelantero = ruedaDelanteraJoint.motor;
+        motorTrasero = ruedaTraseraJoint.motor; // referencia motor rueda trasera
+        motorDelantero = ruedaDelanteraJoint.motor; // referencia motor rueda delantera
 
         // Guardar los valores originales de fricción
-        originalFrictionTrasera = ruedaTraseraMaterial.friction;
-        originalFrictionDelantera = ruedaDelanteraMaterial.friction;
+        originalFrictionTrasera = ruedaTraseraMaterial.friction; // referencia fricción rueda trasera
+        originalFrictionDelantera = ruedaDelanteraMaterial.friction; // referencia fricción rueda delantera
     }
 
     void Update()
@@ -47,20 +47,21 @@ public class Moto : MonoBehaviour
             return;
         }
 
-        horizontal = Input.GetAxis("Horizontal");
+        horizontal = Input.GetAxis("Horizontal"); // acelerar y frenar
 
         if (Input.GetKey(KeyCode.Space))
         {
-            ChangeWheelFriction(pressedFrictionValue);
+            ChangeWheelFriction(pressedFrictionValue); // cambiar fricción (caballito)
 
         }
         else
         {
-            RestoreOriginalFriction();
+            RestoreOriginalFriction(); // restaurar fricción
         }
 
     }
 
+    //  FixedUpdate se llama una vez por fotograma
     void FixedUpdate()
     {
         // if meta == true return
@@ -69,12 +70,14 @@ public class Moto : MonoBehaviour
             return;
         }
 
+        //  si se acelera o frena
         if (horizontal != 0)
         {
             // Ajustar velocidad del motor
             motorTrasero.motorSpeed = horizontal * speed;
             motorDelantero.motorSpeed = horizontal * speed;
 
+            // Asignar el motor a las ruedas
             ruedaTraseraJoint.motor = motorTrasero;
             ruedaDelanteraJoint.motor = motorDelantero;
 
@@ -83,19 +86,21 @@ public class Moto : MonoBehaviour
             ruedaDelanteraRb.AddForce(Vector2.right * horizontal * forceAmount);
         }
 
-
-        Collider2D collider = ruedaTraseraRb.GetComponent<Collider2D>();
+        // esto activa y desactiva el RB en tiempo de ejecución para tomar los nuevos valores de los materiales físicos (fricción)
+        Collider2D collider = ruedaTraseraRb.GetComponent<Collider2D>(); 
         collider.enabled = false;
         collider.enabled = true;
 
     }
 
+    // Cambiar la fricción de las ruedas
     void ChangeWheelFriction(float friction)
     {
         ruedaTraseraMaterial.friction = friction;
         ruedaDelanteraMaterial.friction = friction;
     }
 
+    // Restaurar la fricción original de las ruedas
     void RestoreOriginalFriction()
     {
         ruedaTraseraMaterial.friction = originalFrictionTrasera;
@@ -127,11 +132,13 @@ public class Moto : MonoBehaviour
         return meta;
     }
 
+    // public function to return bool dead
     public bool GetDead()
     {
         return dead;
     }
 
+    // al salir de la escena, restaura los valores de fricción o materiales físicos para evitar errores en la siguiente escena
     void OnDestroy()
     {
         // Restaurar la fricción original

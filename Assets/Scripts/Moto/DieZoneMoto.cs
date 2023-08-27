@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DieZoneMoto : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
 
     }
 
-    // Update is called once per frame
+
     void Update()
     {
 
@@ -22,7 +22,7 @@ public class DieZoneMoto : MonoBehaviour
         // if player
         if (other.CompareTag("Player"))
         {
-
+            // sin utilizar, porque no puede salirse por abajo de la pantalla
         }
     }
 }

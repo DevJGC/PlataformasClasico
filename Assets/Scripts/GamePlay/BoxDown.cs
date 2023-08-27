@@ -11,7 +11,8 @@ public class BoxDown : MonoBehaviour
     [SerializeField] float durationToReset = 1.0f; // Duración de la animación de regreso
 
     private Vector3 initialPosition; // Guardar la posición inicial
-    private bool onlyOne;
+
+    private bool onlyOne;// Variable para asegurarnos de que la explosión solo se ejecute una vez.
 
     void Start()
     {
@@ -28,6 +29,7 @@ public class BoxDown : MonoBehaviour
         }
     }
 
+    // Si toca con el player, se le aplica física una vez
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player" && !onlyOne)
@@ -38,6 +40,7 @@ public class BoxDown : MonoBehaviour
         }
     }
 
+    // Lo devuelve a la posición inicial    
     void ReturnToInitialPosition()
     {
         // Detenemos cualquier física en la caja

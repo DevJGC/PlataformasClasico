@@ -4,26 +4,26 @@ using UnityEngine;
 
 public class DieZone : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         
     }
 
-    // ontriggerenter 2d player
+    // Si el player cae en la zona de abajo del todo, muere
     private void OnTriggerEnter2D(Collider2D other)
     {
         // if player
         if (other.CompareTag("Player"))
         {
             // get component player die
-            PlayerDie playerDie = other.GetComponent<PlayerDie>();
+            PlayerDie playerDie = other.GetComponent<PlayerDie>();  
             // if player die
             if (playerDie != null)
             {

@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class MegaBoxes : MonoBehaviour
 {
-    [SerializeField] Animator animPlayer;
+    [SerializeField] Animator animPlayer; //    animator player
 
-    [SerializeField] Rigidbody2D rbPlayer;
+    [SerializeField] Rigidbody2D rbPlayer; // rigidbody player
 
-    bool oneTime;
+    bool oneTime; //  se ejecuta una sola vez
 
     // audio source
     [SerializeField] AudioSource audioSource;
@@ -26,7 +26,7 @@ public class MegaBoxes : MonoBehaviour
 
     }
 
-    // ontriggerenter2d tag player timescale to 0
+    // Si el player entra en la zona, lanza la animación de Celebración
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !oneTime)

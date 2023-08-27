@@ -5,23 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class CanvasFinalMoto : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        
+        // si se pulsa enter reiniciar
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            Reiniciar();
+        }
+
     }
 
+    // volver a jugar nivel moto
     public void Reiniciar()
     {
         SceneManager.LoadScene("GamePlayLevel6");
     }
 
+    // volver al menú principal
     public void Menu()
     {
         SceneManager.LoadScene("Menu");

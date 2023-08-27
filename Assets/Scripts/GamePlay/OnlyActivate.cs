@@ -7,20 +7,19 @@ public class OnlyActivate : MonoBehaviour
     // referencia component active
     [SerializeField] private Enemy enemy;
 
-    bool oneTime = false;
+    bool oneTime = false; // solo una vez
 
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    // ontrigger enter 2d tag player
+    // Si el jugador entra en el trigger, el enemigo se activa
     private void OnTriggerEnter2D(Collider2D other)
     {
         // if tag player

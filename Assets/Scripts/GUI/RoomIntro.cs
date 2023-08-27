@@ -23,7 +23,6 @@ public class RoomIntro : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -51,6 +50,7 @@ public class RoomIntro : MonoBehaviour
 
     }
 
+    //  comienza el juego
     void ChangeScene()
     {
         // load scene

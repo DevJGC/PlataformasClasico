@@ -3707,7 +3707,7 @@ MonoBehaviour:
   audioSource: {fileID: 1345502079}
   audioClip: {fileID: 8300000, guid: 474104502a34c534bbd191184cd0b8eb, type: 3}
   byeSound: {fileID: 8300000, guid: 373890507360aa249b2b8d0b66cfccda, type: 3}
-  timeToWait: 0.1
+  timeToWait: 0.02
   buySuperJump: {fileID: 1655931863}
   buySuperSpeed: {fileID: 526278043}
   animatorButtonJump: {fileID: 1655931866}

@@ -5,18 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] Image countdownImage; // Arrastra tu objeto de imagen aquí desde el inspector.
+    [SerializeField] Image countdownImage; // imagen tiempo restante.
     [SerializeField] float countdownDuration = 10f; // Duración del contador en segundos.
 
-    private bool isCountingDown = false;
-    private float currentTime;
+    private bool isCountingDown = false; // Indica si el contador está activo.
+    private float currentTime; //   Tiempo actual del contador.
 
-    [SerializeField] private Moto moto;
+    [SerializeField] private Moto moto; //  referencia script moto
 
     // panel sintiempo
     [SerializeField] private GameObject panelSinTiempo;
 
-    [SerializeField] GameObject colliderFinal;
+    [SerializeField] GameObject colliderFinal; //   referencia collider final (meta)
 
     // sound
     [SerializeField] private AudioSource audioSource;
@@ -34,28 +34,31 @@ public class Counter : MonoBehaviour
         // Actualiza el fillAmount si el contador está activo.
         if (isCountingDown)
         {
-            countdownImage.fillAmount = currentTime / countdownDuration;
+            countdownImage.fillAmount = currentTime / countdownDuration; // Actualiza el fillAmount de la imagen.
         }
     }
 
+    //  Restablece el contador a su duración inicial.
     public void StartCountdown()
     {
         // if moto.meta == true return
-        if (moto.GetMeta() || moto.GetDead())
+        if (moto.GetMeta() || moto.GetDead()) //    Si la moto ha llegado a la meta o está muerta, no inicia el contador.
         {
             return;
         }
 
-        if (!isCountingDown)
+        if (!isCountingDown) //  Si el contador no está activo, lo inicia.
         {
-            currentTime = countdownDuration;
-            isCountingDown = true;
+            currentTime = countdownDuration; //  Establece el tiempo actual al valor de la duración del contador.
+            isCountingDown = true; //    Activa el contador.
             StartCoroutine(CountdownCoroutine());
         }
     }
 
+    //  Restablece el contador a su duración inicial.
     private IEnumerator CountdownCoroutine()
     {
+        // Espera hasta que el tiempo actual sea 0.
         while (currentTime > 0)
         {
             currentTime -= Time.deltaTime;
@@ -67,6 +70,7 @@ public class Counter : MonoBehaviour
         OnCountdownFinished();
     }
 
+    //  final de contador   
     private void OnCountdownFinished()
     {
         // Aquí puedes agregar cualquier lógica que desees que ocurra cuando el contador termine.
@@ -83,6 +87,7 @@ public class Counter : MonoBehaviour
         Debug.Log("¡Contador finalizado!");
     }
 
+    //  restart level with delay
     IEnumerator RestartLevelWithDelay(float delay)
     {
         float elapsedTime = 0f;

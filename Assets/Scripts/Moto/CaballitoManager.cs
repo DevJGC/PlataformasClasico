@@ -8,7 +8,7 @@ public class CaballitoManager : MonoBehaviour
     [SerializeField] DetectorRueda detectorRueda; // para sacar segundosSinTocar total
     [SerializeField] Moto moto; // para sacar si meta = true
 
-    [SerializeField] private int segundosSinTocarMax = 0;
+    [SerializeField] private int segundosSinTocarMax = 0; 
     [SerializeField] private int segundosSinTocarParcial = 0;
 
     // text canvas final
@@ -25,7 +25,7 @@ public class CaballitoManager : MonoBehaviour
         // Al iniciar, recuperamos el valor máximo guardado previamente
         if (PlayerPrefs.HasKey(RECORD_KEY))
         {
-            segundosSinTocarMax = PlayerPrefs.GetInt(RECORD_KEY);
+            segundosSinTocarMax = PlayerPrefs.GetInt(RECORD_KEY); //  guarda el record
         }
     }
 
@@ -35,7 +35,7 @@ public class CaballitoManager : MonoBehaviour
         if (moto.meta == true && unaVez == false)
         {
             unaVez = true;
-            segundosSinTocarParcial = detectorRueda.segundosSinTocar;
+            segundosSinTocarParcial = detectorRueda.segundosSinTocar; // guardamos el valor parcial
             GetCaballito();
         }
 
@@ -80,6 +80,7 @@ public class CaballitoManager : MonoBehaviour
         textParcial.text = "Actual: " + segundosSinTocarParcial.ToString();
     }
 
+    // mostrar final sin record canvas final
     private void NoSuperado()
     {
         textTitulo.text = "Completado!";

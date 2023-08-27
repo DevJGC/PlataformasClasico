@@ -5,26 +5,25 @@ using UnityEngine.SceneManagement;
 
 public class HeadMoto : MonoBehaviour
 {
-    [SerializeField] GameObject cabezaDead;
+    [SerializeField] GameObject cabezaDead; // cabeza del player
 
     // audio source
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
-    [SerializeField] private Moto moto;
+    [SerializeField] private Moto moto; // referencia a moto (script)
 
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
 
-    // on trigger enter 2d tag enemy destroy
+    // si la variable dead de moto es true, se activa la cabezaDead ( es que ha caido )
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))

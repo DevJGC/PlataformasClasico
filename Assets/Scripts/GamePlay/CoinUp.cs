@@ -42,12 +42,13 @@ public class CoinUp : MonoBehaviour
     //    }
     //}
 
+    // mueve la moenda a la esquina superior derecha y la destruye
     private void MoveCoinToTopRightAndDestroy()
     {
-        audioSource.PlayOneShot(audioClip);
-        coinManager.AddCoin(); 
+        audioSource.PlayOneShot(audioClip); // Reproduce el sonido
+        coinManager.AddCoin(); // Utiliza la referencia pública directamente
         // Puedes ajustar este punto para que se adapte a tu UI o configuración de cámara
-        Vector2 topRightScreenPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height));
-        transform.DOLocalMove(topRightScreenPosition, moveDuration).OnComplete(() => Destroy(gameObject));
+        Vector2 topRightScreenPosition = Camera.main.ScreenToWorldPoint(new Vector2(Screen.width, Screen.height)); //   Obtener la posición de la esquina superior derecha de la pantalla
+        transform.DOLocalMove(topRightScreenPosition, moveDuration).OnComplete(() => Destroy(gameObject)); //   Mueve la moneda a la posición de la esquina superior derecha de la pantalla y destruye la moneda
     }
 }

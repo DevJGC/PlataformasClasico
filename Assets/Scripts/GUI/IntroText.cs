@@ -6,11 +6,9 @@ using TMPro;
 
 public class IntroText : MonoBehaviour
 {
-    // referencia text tmpro
-    [SerializeField] TextMeshProUGUI textMeshProUGUI;
-    // referencia string
-    [SerializeField] string dialogText;
-    [SerializeField] float timeToType;
+    [SerializeField] TextMeshProUGUI textMeshProUGUI; //    referencia textmeshpro
+    [SerializeField] string dialogText; //  dialog text
+    [SerializeField] float timeToType; //   time to type
 
     // audio source
     [SerializeField] AudioSource audioSource;
@@ -23,13 +21,12 @@ public class IntroText : MonoBehaviour
     void Start()
     {
         // textmeshpro text = ""
-        textMeshProUGUI.text = "";
+        textMeshProUGUI.text = ""; 
         // startcoroutine type
         StartCoroutine(Type());
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         

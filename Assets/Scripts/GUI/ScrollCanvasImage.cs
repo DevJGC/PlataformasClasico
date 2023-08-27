@@ -6,11 +6,11 @@ using UnityEngine.UI;
 public class ScrollCanvasImage : MonoBehaviour
 {
     public Vector2 scrollSpeed = new Vector2(0.5f, 0); // Velocidad de desplazamiento. Puedes cambiar los valores para conseguir la dirección y velocidad que deseas.
-    private RawImage rawImage;
+    private RawImage rawImage; // Referencia al componente RawImage.
 
     private void Start()
     {
-        rawImage = GetComponent<RawImage>();
+        rawImage = GetComponent<RawImage>(); // Obtener el componente RawImage.
     }
 
     private void Update()

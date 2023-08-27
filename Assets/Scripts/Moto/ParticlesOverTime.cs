@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ParticlesOverTime : MonoBehaviour
 {
-    [SerializeField] private ParticleSystem particleHumo;
+    [SerializeField] private ParticleSystem particleHumo; // Referencia al ParticleSystem de humo
     [SerializeField] private Rigidbody2D ruedaRb; // Referencia al Rigidbody2D de la rueda
 
     [SerializeField] private float emissionMultiplier = 0.001f; // Multiplier to control how emission changes

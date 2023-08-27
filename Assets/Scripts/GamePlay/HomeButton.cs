@@ -16,7 +16,7 @@ public class HomeButton : MonoBehaviour
         
     }
 
-
+    // Si se pulsa Escape, sale al menú principal
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -35,6 +35,7 @@ public class HomeButton : MonoBehaviour
         Invoke("HomeButtonAction", 0.1f);
     }
 
+    // home button action
     void HomeButtonAction()
     {
         SceneManager.LoadScene("Menu");

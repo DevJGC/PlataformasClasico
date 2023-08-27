@@ -9,43 +9,45 @@ public class Mas1 : MonoBehaviour
     
     void Start()
     {
-        // starcourrutine
+        // starcourrutines y destruye el prefab
         StartCoroutine(FadeOut(1.0f));
         StartCoroutine(MoveUp(1.0f));
         Destroy(gameObject, 1.0f);
     }
-
-    // Update is called once per frame
+    
     void Update()
     {
         
     }
 
-    // fade to transparent
-
+    // hace transparente poco a poco
     public IEnumerator FadeOut(float time)
     {
-        float elapsedTime = 0.0f;
+        float elapsedTime = 0.0f; 
         Color c = spriteRenderer.material.color;
+
+        //  mientras no termine el tiempo, lo hace transparente
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
             float alpha = Mathf.Lerp(1.0f, 0.0f, elapsedTime / time);
-            spriteRenderer.material.color = new Color(c.r, c.g, c.b, alpha);
+            spriteRenderer.material.color = new Color(c.r, c.g, c.b, alpha); // hace transparente poco a poco
             yield return null;
         }
     }
 
-    // move up
+    // mueve hacia arriba poco a poco
     public IEnumerator MoveUp(float time)
     {
         float elapsedTime = 0.0f;
         Vector3 startingPos = transform.position;
         Vector3 finalPos = transform.position + Vector3.up * 2.0f;
+        
+        // mientras no termine el tiempo, sube
         while (elapsedTime < time)
         {
             elapsedTime += Time.deltaTime;
-            transform.position = Vector3.Lerp(startingPos, finalPos, elapsedTime / time);
+            transform.position = Vector3.Lerp(startingPos, finalPos, elapsedTime / time); // mueve hacia arriba poco a poco
             yield return null;
         }
     }

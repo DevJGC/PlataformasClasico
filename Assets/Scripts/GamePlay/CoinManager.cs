@@ -16,11 +16,13 @@ public class CoinManager : MonoBehaviour
         UpdateCoinCounterUI();
     }
 
+    // Método para actualizar el texto de la UI
     private void UpdateCoinCounterUI()
     {
         coinCounterText.text = coinCount.ToString(); // Solo muestra el número
     }
 
+    // Esta función devuelve el número actual de monedas
     public int GetCurrentCoinCount()
     {
         return coinCount;

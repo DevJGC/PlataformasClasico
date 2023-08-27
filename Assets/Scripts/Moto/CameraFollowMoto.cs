@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class CameraFollowMoto : MonoBehaviour
 {
-    [SerializeField] private Transform target;
-    [SerializeField] private Camera mainCamera;
-
-   
+    [SerializeField] private Transform target; //   referencia al jugador
+    [SerializeField] private Camera mainCamera; //  referencia a la cámara principal
 
 
     void Start()
     {
         if (!mainCamera)
-            mainCamera = GetComponent<Camera>();
-
-
+            mainCamera = GetComponent<Camera>(); // Si no se establece la cámara principal, se establece en la cámara que tiene este script
     }
 
     void Update()

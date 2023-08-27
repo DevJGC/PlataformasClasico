@@ -4,19 +4,19 @@ using UnityEngine;
 
 public class Meta : MonoBehaviour
 {
-    [SerializeField] private Moto moto;
+    [SerializeField] private Moto moto; // referencia component moto (script moto)
 
-    [SerializeField] private GameObject canvasSchool;
+    [SerializeField] private GameObject canvasSchool; // referencia canvasSchool (meta)
 
-    [SerializeField] private GameObject timeCanvas;
+    [SerializeField] private GameObject timeCanvas; // referencia timeCanvas (meta)
 
     // sound
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip audioClip;
 
-    [SerializeField] private GameObject canvasPrincipal;
+    [SerializeField] private GameObject canvasPrincipal; // referencia canvasPrincipal (meta)
 
-    [SerializeField] private GameObject contadorSegundos;
+    [SerializeField] private GameObject contadorSegundos; // referencia contadorSegundos (meta)
 
 
     void Start()
@@ -29,16 +29,16 @@ public class Meta : MonoBehaviour
         
     }
 
-    // ontriggerenter2d tag player
+    // si el trigger detecta que el player llega a la meta
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             // set win true
             moto.meta = true;
-           // moto.speed = 0f;
-           // moto.forceAmount = 0f;
-            moto.LlegadaMeta();
+            // moto.speed = 0f;
+            // moto.forceAmount = 0f;
+            moto.LlegadaMeta(); //  call function LlegadaMeta
             Invoke("LlegadaMeta", 1f);
             // set timeCanvas active
             timeCanvas.SetActive(false);
@@ -46,10 +46,11 @@ public class Meta : MonoBehaviour
             audioSource.PlayOneShot(audioClip);
 
             // disable component contadorSegundos
-            contadorSegundos.GetComponent<DetectorRueda>().enabled = false;
+            contadorSegundos.GetComponent<DetectorRueda>().enabled = false; // disable component DetectorRueda
         }
     }
 
+    // function LlegadaMeta (set canvasSchool active)
     void LlegadaMeta()
     {
         // set canvasSchool active
